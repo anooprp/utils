@@ -23,7 +23,6 @@ from pandora.util.sample.connection import (get_boto_client, get_postgres_con,
 
 
 """Generic functions like cleanup s3 ,send mail ,finding previous quarter 
-    which not related to Redmart or ETL practices 
     Can Easily port across the projects ,  Teams with minimal change
 """
 
@@ -164,7 +163,7 @@ def redshift_s3_unload(v_table_name, v_schema_name, src_db='BI', delim="|"):
 
     sel_sql = " select * from {schema}.{tab_name} ".format(
         schema=v_schema_name, tab_name=v_table_name)
-    s3_file_name = "s3://bi.redmart.com/prod/redshift_tables/{schema}/{file_name}".format(
+    s3_file_name = "s3://bi.mylocation.com/prod/redshift_tables/{schema}/{file_name}".format(
         schema=v_schema_name, file_name=v_table_name)
 
     unload_sql = " unload ('{sel_sql}')" \
@@ -189,7 +188,7 @@ def redshift_s3_unload(v_table_name, v_schema_name, src_db='BI', delim="|"):
 
 def redshift_s3_load(v_table_name, v_schema_name, src_db='BI', delim="|"):
 
-    s3_file_name = "s3://bi.redmart.com/prod/redshift_tables/{schema}/{file_name}".format(schema=v_schema_name,
+    s3_file_name = "s3://bi.mylocation.com/prod/redshift_tables/{schema}/{file_name}".format(schema=v_schema_name,
                                                                                           file_name=v_table_name)
 
     copy_cmd = "copy {schema}.{tab_name}) " \
